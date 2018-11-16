@@ -1,0 +1,62 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Regisztráció</h1>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Név:</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          Kitöltendő!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="weight">Súly:</label>
+        <select class="form-control" id="weight" required [(ngModel)]="user.weight" name="weight" #weight="ngModel">
+          <option *ngFor="let weight of weights" [value]="weight">{{weight}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="weight">Magasság:</label>
+        <input type="text" class="form-control" id="height" required [(ngModel)]="user.height" name="height" #height="ngModel">
+        <div [hidden]="height.valid || height.pristine" class="alert alert-danger">
+          Kitöltendő!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="other">Egyéb:</label>
+        <input type="text" class="form-control" id="other" [(ngModel)]="user.other" name="other" #other="ngModel">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Mehet</button>
+
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>Az adataid:</h2>
+    <div class="row">
+      <div class="col-xs-3">Név:</div>
+      <div class="col-xs-9  pull-left">{{ user.name }}</div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-3">Súly:</div>
+      <div class="col-xs-9 pull-left">{{ user.weight }} kg</div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-3">Magasság:</div>
+      <div class="col-xs-9 pull-left">{{ user.height }} cm</div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-3">Egyéb:</div>
+      <div class="col-xs-9 pull-left">{{ user.other }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Szerkesztés</button>
+  </div>
+</div>
