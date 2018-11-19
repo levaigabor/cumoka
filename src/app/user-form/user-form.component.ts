@@ -18,7 +18,7 @@ export class UserFormComponent implements OnInit {
 
   weights = ['50', '60', '70', '80'];
 
-  user = new User(18, 'Johnny Bravo', this.weights[2], '170', 'Mindenem ez az app');
+  user = new User('Johnny Bravo', "pass", 11, 170);
 
   submitted = false;
 

@@ -20,7 +20,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public onSubmit() {
-    const newUser = new User(this.password, this.username, this.weight, this.height);
+    const newUser = new User(this.password, this.username, this.weight, this.height, 11);
     this._registerUserService.register(newUser);
   }
 
