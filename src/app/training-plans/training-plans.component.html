@@ -1,5 +1,5 @@
 <div class="container">
-    <div [hidden]="submitted">
+    <div>
         <h2>Edzésterv</h2>
         <form (ngSubmit)="onSubmit()" #planForm="ngForm">
             <div class="form-group">
@@ -18,19 +18,39 @@
         </form>
     </div>
 
-    <div [hidden]=!submitted>
-        <h2>Az edzés adatai:</h2>
-        <div class="row">
-            <div class="col-xs-3">Időpontja:</div>
-            <div class="col-xs-9  pull-left">{{ plan.time | date : "fullDate" }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Típusa:</div>
-            <div class="col-xs-9  pull-left">{{ plan.name }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Darabszám:</div>
-            <div class="col-xs-9  pull-left">{{ plan.count }} db</div>
-        </div>
-    </div>
+    <!--<div [hidden]=!submitted>-->
+        <!--<h2>Az edzés adatai:</h2>-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-3">Időpontja:</div>-->
+            <!--<div class="col-xs-9  pull-left">{{ plan.time | date : "fullDate" }}</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-3">Típusa:</div>-->
+            <!--<div class="col-xs-9  pull-left">{{ plan.name }}</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-3">Darabszám:</div>-->
+            <!--<div class="col-xs-9  pull-left">{{ plan.count }} db</div>-->
+        <!--</div>-->
+    <!--</div>-->
+  <div [hidden]=!submitted>
+    <h2>Az edzés adatai:</h2>
+    <table class="table table-hover" >
+
+      <thead>
+      <tr>
+        <th scope="col">Időpontja</th>
+        <th scope="col">Típusa</th>
+        <th scope="col">Mennyiség</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of testJson">
+        <th scope="row">{{ item.time | date : "fullDate" }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.count }} db</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

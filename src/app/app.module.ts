@@ -10,6 +10,9 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { MealsComponent } from './meals/meals.component';
 import { TrainingPlansComponent } from './training-plans/training-plans.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { RecipesComponent } from './recipes/recipes.component';
     UserFormComponent,
     MealsComponent,
     TrainingPlansComponent,
-    RecipesComponent
+    RecipesComponent,
+    DashboardComponent,
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -5,26 +5,41 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { MealsComponent } from './meals/meals.component';
 import { TrainingPlansComponent } from './training-plans/training-plans.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import {LoginComponent} from './login/login.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {UserComponent} from './user/user.component';
+import {AuthGuard} from './services/auth.guard';
 
 const appRoutes: Routes = [
-  { path: 'userdata',      component: UserFormComponent },
   {
-    path: 'meals',
-    component: MealsComponent,
-    data: { title: 'Étkezés' }
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
   },
   {
-    path: 'training',
-    component: TrainingPlansComponent,
-    data: { title: 'Edzéstervek' }
+    path: 'user',
+    component: UserComponent,
+    data: { title: 'User' },
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        canActivateChild: [AuthGuard],
+        children: [
+          { path: 'meals', component: MealsComponent, data: { title: 'Étkezés' } },
+          { path: 'training', component: TrainingPlansComponent, data: { title: 'Edzéstervek' } },
+          { path: 'recipes', component: RecipesComponent, data: { title: 'Receptek' } }
+        ],
+      }
+    ]
   },
   {
-    path: 'recipes',
-    component: RecipesComponent,
-    data: { title: 'Receptek' }
+    path: 'dashboard',
+    component: DashboardComponent,
+    data: { title: 'Dashboard' }
   },
   { path: '',
-    redirectTo: '/',
+    redirectTo: 'login',
     pathMatch: 'full'
   }
   //{ path: '**', component: PageNotFoundComponent }
@@ -34,7 +49,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true }
+      { enableTracing: false }
     )
   ],
   exports: [
