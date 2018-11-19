@@ -13,6 +13,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { UserComponent } from './user/user.component';
     RecipesComponent,
     DashboardComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,

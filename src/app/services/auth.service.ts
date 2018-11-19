@@ -15,7 +15,7 @@ export class AuthService {
   redirectUrl: string;
 
   public login() {
-    this._httpClient.post<HttpResponse<Object>>(`/authenticate`, {  }).toPromise()
+    this._httpClient.post<HttpResponse<Object>>(`/api/users`, {  }).toPromise()
       .then(
         (resp) => {
           this.isLoggedIn = true;

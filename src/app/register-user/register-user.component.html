@@ -1,0 +1,21 @@
+<form action="" (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <div>
+    <label for="">username</label>
+    <input type="text" [(ngModel)]="username" name="username">
+  </div>
+  <div>
+    <label for="">password</label>
+    <input type="password" [(ngModel)]="password" name="password">
+  </div>
+  <div>
+    <label for="">height</label>
+    <input type="number" [(ngModel)]="height" name="height">
+  </div>
+  <div>
+    <label for="">weight</label>
+    <input type="number" [(ngModel)]="weight" name="weight">
+  </div>
+  <div>
+    <button type="submit">Register</button>
+  </div>
+</form>

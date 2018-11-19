@@ -9,12 +9,18 @@ import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {UserComponent} from './user/user.component';
 import {AuthGuard} from './services/auth.guard';
+import {RegisterUserComponent} from './register-user/register-user.component';
 
 const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
     data: { title: 'Login' }
+  },
+  {
+    path: 'register',
+    component: RegisterUserComponent,
+    data: { title: 'Register' }
   },
   {
     path: 'user',
