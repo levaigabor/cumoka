@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private _httpClient: HttpClient, private _router: Router) { }
+  constructor(private _httpClient: HttpClient) { }
 
-  isLoggedIn = false;
+  isLoggedIn = true;
   redirectUrl: string;
 
   public login() {

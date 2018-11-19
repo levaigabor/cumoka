@@ -1,21 +1,20 @@
-<form action="" (ngSubmit)="onSubmit()" #userForm="ngForm">
-  <div>
-    <label for="">username</label>
-    <input type="text" [(ngModel)]="username" name="username">
+<h1>Register user</h1>
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <div class="form-group">
+    <label for="userRegisterEmailInput">Email address</label>
+    <input type="email" class="form-control" [(ngModel)]="username" name="username" id="userRegisterEmailInput" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
-  <div>
-    <label for="">password</label>
-    <input type="password" [(ngModel)]="password" name="password">
+  <div class="form-group">
+    <label for="userRegisterPasswordInput">Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password" name="password" id="userRegisterPasswordInput" placeholder="Password">
   </div>
-  <div>
-    <label for="">height</label>
-    <input type="number" [(ngModel)]="height" name="height">
+  <div class="form-group">
+    <label for="userRegisterHeightInput">Height</label>
+    <input type="password" class="form-control" [(ngModel)]="height" name="height" id="userRegisterHeightInput" placeholder="Password">
   </div>
-  <div>
-    <label for="">weight</label>
-    <input type="number" [(ngModel)]="weight" name="weight">
+  <div class="form-group">
+    <label for="userRegisterWeightInput">Weight</label>
+    <input type="password" class="form-control" [(ngModel)]="weight" name="weight" id="userRegisterWeightInput" placeholder="Password">
   </div>
-  <div>
-    <button type="submit">Register</button>
-  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
