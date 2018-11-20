@@ -1,0 +1,24 @@
+<h1>Register user</h1>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="userRegisterEmailInput">Email address</label>
+    <input type="email" class="form-control" formControlName="username"
+           id="userRegisterEmailInput" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="userRegisterPasswordInput">Password</label>
+    <input type="password" class="form-control" formControlName="password"
+           name="password" id="userRegisterPasswordInput" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="userRegisterHeightInput">Height</label>
+    <input type="password" class="form-control" formControlName="userHeight"
+           name="height" id="userRegisterHeightInput" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="userRegisterWeightInput">Weight</label>
+    <input type="password" class="form-control"
+           formControlName="userWeight" name="weight" id="userRegisterWeightInput" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

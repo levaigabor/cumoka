@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainingPlan } from '../training-plan';
-import {TrainingPlansService} from '../services/training-plans.service';
+import {TrainingPlansService} from '../../services/user/training-plan/training-plans.service';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -55,18 +54,6 @@ export class TrainingPlansComponent implements OnInit {
     }, (error) => {
       console.log('Couldn\'t load plans. Error Description: ' + error);
     });
-  }
-
-  public Login() {
-    this._httpClient.post<HttpResponse<Object>>(`/authenticate`, {  }).toPromise()
-      .then(
-        (resp) => {
-          this._router.navigate(["dashboard"]);
-        },
-        (resp) => {
-         console.log('Bad password! Try again...');
-        }
-      );
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -13,7 +13,7 @@ export class UserFormComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.getUserData();
+    // this.getUserData();
   }
 
   weights = ['50', '60', '70', '80'];
@@ -22,21 +22,21 @@ export class UserFormComponent implements OnInit {
 
   submitted = false;
 
-  onSubmit() { 
-    this.submitted = true; 
-    this.setUserData();
-  }
+  // onSubmit() {
+  //   this.submitted = true;
+  //   this.setUserData();
+  // }
 
-  getUserData() {
-    const id = 0;
-    this.userService.getUserData(id)
-      .subscribe(user => this.user = user);
-  }
+  // getUserData() {
+  //   const id = 0;
+  //   this.userService.getUserData(id)
+  //     .subscribe(user => this.user = user);
+  // }
 
-  setUserData(): void {
-      this.userService.setUserData(this.user)
-        .subscribe(() => console.log('setUserData finished!'));
-  }
+  // setUserData(): void {
+  //     this.userService.setUserData(this.user)
+  //       .subscribe(() => console.log('setUserData finished!'));
+  // }
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.user); }
 }

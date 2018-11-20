@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meal } from '../meal';
+import { Meal } from '../../models/meal';
 
 @Component({
   selector: 'app-meals',
