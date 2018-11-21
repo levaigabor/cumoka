@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,9 @@ import { UserComponent } from './pages/user/user.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 
 import { UserService } from './services/user/user.service';
+import { AuthenticationService } from './services/auth/authentication.service';
+import { JWTInterceptor } from './helpers/jwt-interceptor.service';
+import {ErrorInterceptor} from './helpers/error.interceptor';
 
 
 @NgModule({
@@ -38,7 +41,18 @@ import { UserService } from './services/user/user.service';
     AppRoutingModule
   ],
   providers: [
-    UserService
+    UserService,
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JWTInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
