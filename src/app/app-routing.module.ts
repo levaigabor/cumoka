@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { MealsComponent } from './pages/meals/meals.component';
 import { TrainingPlansComponent } from './pages/training-plans/training-plans.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
-import {LoginComponent} from './pages/login/login.component';
-import {UserComponent} from './pages/user/user.component';
-import {AuthGuard} from './services/route-guard/auth.guard';
-import {RegisterUserComponent} from './pages/register-user/register-user.component';
+import { LoginComponent } from './pages/login/login.component';
+import { UserComponent } from './pages/user/user.component';
+import { AuthGuard } from './services/route-guard/auth.guard';
+import { RegisterUserComponent } from './pages/register-user/register-user.component';
 
 const appRoutes: Routes = [
   {
@@ -26,23 +26,27 @@ const appRoutes: Routes = [
     data: { title: 'User' },
     canActivate: [AuthGuard],
   },
-  { path: 'meals',
+  {
+    path: 'meals',
     component: MealsComponent,
     data: { title: 'Étkezés' },
     canActivate: [AuthGuard],
   },
-  { path: 'training',
+  {
+    path: 'training',
     component: TrainingPlansComponent,
     data: { title: 'Edzéstervek' },
     canActivate: [AuthGuard],
   },
-  { path: 'recipes',
+  {
+    path: 'recipes',
     component: RecipesComponent,
     data: { title: 'Receptek' },
     canActivate: [AuthGuard],
   },
 
-  { path: '',
+  {
+    path: '',
     redirectTo: 'login',
     canActivate: [AuthGuard],
     pathMatch: 'full'

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-
-  private _loginUrl = 'http://localhost:8080/';
+export class ChartService {
+  
+  private _loginUrl = 'http://localhost:8080/api/meals/diagram/';
 
   constructor(private _httpClient: HttpClient) { }
 
-  public register(requestBody) {
+  public getDiagramData(requestBody) {
     this._httpClient.post<HttpResponse<Object>>(this._loginUrl, requestBody).toPromise()
       .then(
         (resp) => {
