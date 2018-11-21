@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import {UserService} from '../../services/user/user.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-register-user',
@@ -16,15 +16,15 @@ export class RegisterUserComponent implements OnInit {
   public submitted = false;
 
   constructor(private _formBuilder: FormBuilder,
-              private _router: Router,
-              private _userService: UserService) { }
+    private _router: Router,
+    private _userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = this._formBuilder.group({
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       userHeight: ['', Validators.required],
-      userweight: ['', Validators.required],
+      userWeight: ['', Validators.required],
     });
   }
 

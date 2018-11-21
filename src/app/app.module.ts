@@ -15,6 +15,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 
+import { UserService } from './services/user/user.service';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
