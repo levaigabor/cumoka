@@ -17,11 +17,26 @@
             <button type="submit" class="btn btn-success" [disabled]="!planForm.form.valid">Naplózás</button>
         </form>
     </div>
+</div>
+<div class="container trainingsList">
+  <div class="sectionHeader">
+    <h2 class="title">Az Összes edzés</h2>
+    <button class="btn btn-primary" (click)="getAllTrainingPlans()">Mutasd</button>
+  </div>
 
-  <div [hidden]=!submitted>
-    <h2>Az edzés adatai:</h2>
+  <div class="allTrainingItems">
+    <div class="row">
+      <div class="col-4" *ngFor="let item of allTranings">
+        <div class="shadow-sm trainingItem" (click)="onSelect(item)">
+          <p>{{item.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trainingItemDetails" *ngIf="selectedTraining">
+    <h4>A {{selectedTraining.name}} edzés adatai:</h4>
     <table class="table table-hover" >
-
       <thead>
       <tr>
         <th scope="col">Időpontja</th>
@@ -30,15 +45,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of allTranings">
+      <tr *ngFor="let item of selectedTraining.activities">
         <td>{{ item.name }}</td>
-        <td>{{ item.id }}</td>
-        <td>{{ item.address.street }} street</td>
-        <td>{{ item.address.geo.lat }} lat</td>
-        <td>{{ item.address.geo.lng }} lng</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.count }}</td>
       </tr>
       </tbody>
     </table>
   </div>
-  <button (click)="getAllTrainingPlans()">GeccccccOOOO</button>
 </div>

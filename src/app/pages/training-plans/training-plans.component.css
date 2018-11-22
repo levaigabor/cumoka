@@ -1,0 +1,37 @@
+.trainingItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.trainingItem p {
+  margin: 0;
+}
+
+.trainingItemDetails {
+  margin-top: 24px;
+}
+.trainingsList {
+  margin-top: 30px;
+}
+
+.allTrainingItems {
+  margin-top: 24px;
+}
+
+.allTrainingItems .col-4 {
+  margin-bottom: 24px;
+}
+
+.trainingsList .sectionHeader {
+  display: flex;
+  align-items: center;
+}
+
+.trainingsList .sectionHeader .title {
+  margin-right: 12px;
+  margin-bottom: 0;
+}

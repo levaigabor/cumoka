@@ -16,7 +16,7 @@ export interface ITrainingDescriptor {
 })
 export class TrainingPlansService {
 
-  private _trainingsUrl = 'https://jsonplaceholder.typicode.com/users';
+  private _trainingsUrl = 'http://localhost:8080/api/activities';
 
   constructor(private _httpClient: HttpClient) { }
 
