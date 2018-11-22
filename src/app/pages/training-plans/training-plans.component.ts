@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TrainingPlansService} from '../../services/user/training-plan/training-plans.service';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-training-plans',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 export class TrainingPlansComponent implements OnInit {
 
   private _subs;
-  public allTranings;
+  public allTranings = [];
   public submitted: boolean;
 
   public testJson = [
@@ -48,12 +49,17 @@ export class TrainingPlansComponent implements OnInit {
   onSubmit() { this.submitted = true; }
 
   ngOnInit() {
-    this._subs = this._traningPlansService.getTrainingPlans().subscribe((plans) => {
-      this.allTranings = plans;
+  }
+
+  public getAllTrainingPlans() {
+    this._subs = this._traningPlansService.getTrainingPlans().subscribe((trainings) => {
+      this.allTranings = trainings;
       this._subs.unsubscribe();
+      console.log(this.allTranings)
     }, (error) => {
-      console.log('Couldn\'t load plans. Error Description: ' + error);
+    console.log(error)
     });
+
   }
 
 }

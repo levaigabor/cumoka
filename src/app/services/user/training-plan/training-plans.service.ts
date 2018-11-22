@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+import {Http} from '@angular/http';
 
 export interface ITrainingDescriptor {
   trainingId: number;
@@ -14,9 +16,11 @@ export interface ITrainingDescriptor {
 })
 export class TrainingPlansService {
 
-  constructor(private _client: HttpClient) { }
+  private _trainingsUrl = 'https://jsonplaceholder.typicode.com/users';
 
-  public getTrainingPlans(): Observable<ITrainingDescriptor[]> {
-    return this._client.get<ITrainingDescriptor[]>("");
+  constructor(private _httpClient: HttpClient) { }
+
+  public getTrainingPlans(): Observable<any> {
+    return this._httpClient.get<any>(this._trainingsUrl);
   }
 }

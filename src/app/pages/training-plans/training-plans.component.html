@@ -4,11 +4,11 @@
         <form (ngSubmit)="onSubmit()" #planForm="ngForm">
             <div class="form-group">
                 <label for="time">Add meg az időpontot:</label>
-                <input type="date" id="time" name="time" required [ngModel]="plan.time | date: 'yyyy-MM-dd'" (ngModelChange)="plan.time = $event" #time="ngModel">
+                <input type="date" id="time" name="time" required >
             </div>
             <div class="form-group">
                 <label for="name">Az edzés típusa</label>
-                <input list="plans" id="name" required [(ngModel)]="plan.name" name="name" #name="ngModel">
+                <input list="plans" id="name" required >
                 <datalist id="plans">
                     <option value="Hambi"></option>
                     <!-- TODO opciók a szerverről -->
@@ -30,12 +30,15 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of testJson">
-        <th scope="row">{{ item.time | date : "fullDate" }}</th>
+      <tr *ngFor="let item of allTranings">
         <td>{{ item.name }}</td>
-        <td>{{ item.count }} db</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.address.street }} street</td>
+        <td>{{ item.address.geo.lat }} lat</td>
+        <td>{{ item.address.geo.lng }} lng</td>
       </tr>
       </tbody>
     </table>
   </div>
+  <button (click)="getAllTrainingPlans()">GeccccccOOOO</button>
 </div>
