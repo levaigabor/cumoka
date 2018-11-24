@@ -4,53 +4,56 @@
         <form (ngSubmit)="onSubmit()" #planForm="ngForm">
             <div class="form-group">
                 <label for="time">Add meg az időpontot:</label>
-                <input type="date" id="time" name="time" required >
+                <input type="date" id="time" name="time" required>
             </div>
             <div class="form-group">
                 <label for="name">Az edzés típusa</label>
-                <input list="plans" id="name" required >
+                <input list="plans" id="name" required>
                 <datalist id="plans">
-                    <option value="Hambi"></option>
-                    <!-- TODO opciók a szerverről -->
+                    <option *ngFor="let activity of allActivities" value="{{activity.id}}">{{activity.name}}</option>
                 </datalist>
+            </div>
+            <div class="form-group">
+                <label for="count">Mennyiség (db/perc)</label>
+                <input type="number" id="count" name="count" required>
             </div>
             <button type="submit" class="btn btn-success" [disabled]="!planForm.form.valid">Naplózás</button>
         </form>
     </div>
 </div>
 <div class="container trainingsList">
-  <div class="sectionHeader">
-    <h2 class="title">Az Összes edzés</h2>
-    <button class="btn btn-primary" (click)="getAllTrainingPlans()">Mutasd</button>
-  </div>
-
-  <div class="allTrainingItems">
-    <div class="row">
-      <div class="col-4" *ngFor="let item of allTranings">
-        <div class="shadow-sm trainingItem" (click)="onSelect(item)">
-          <p>{{item.name}}</p>
-        </div>
-      </div>
+    <div class="sectionHeader">
+        <h2 class="title">Az edzésterveid</h2>
+        <button class="btn btn-primary" (click)="getAllTrainingPlans()">Mutasd</button>
     </div>
-  </div>
 
-  <div class="trainingItemDetails" *ngIf="selectedTraining">
-    <h4>A {{selectedTraining.name}} edzés adatai:</h4>
-    <table class="table table-hover" >
-      <thead>
-      <tr>
-        <th scope="col">Időpontja</th>
-        <th scope="col">Típusa</th>
-        <th scope="col">Mennyiség</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of selectedTraining.activities">
-        <td>{{ item.name }}</td>
-        <td>{{ item.date }}</td>
-        <td>{{ item.count }}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="allTrainingItems">
+        <div class="row">
+            <div class="col-4" *ngFor="let item of allTranings">
+                <div class="shadow-sm trainingItem" (click)="onSelectTrainingPlan(item)">
+                    <p>{{item.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="trainingItemDetails" *ngIf="selectedTraining">
+        <h4>A {{selectedTraining.name}} edzés adatai:</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Időpontja</th>
+                    <th scope="col">Típusa</th>
+                    <th scope="col">Mennyiség</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of selectedTraining.activities">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.count }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -16,11 +16,17 @@ export interface ITrainingDescriptor {
 })
 export class TrainingPlansService {
 
-  private _trainingsUrl = 'http://localhost:8080/api/activities';
+  private _trainingsUrl = 'http://localhost:8080/api/activityplans';
+  private _trainingActivitiesUrl = 'http://localhost:8080/api/activities';
+
 
   constructor(private _httpClient: HttpClient) { }
 
   public getTrainingPlans(): Observable<any> {
     return this._httpClient.get<any>(this._trainingsUrl);
+  }
+
+  public getTrainingActivities(): Observable<any> {
+    return this._httpClient.get<any>(this._trainingActivitiesUrl);
   }
 }

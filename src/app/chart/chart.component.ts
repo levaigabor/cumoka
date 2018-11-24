@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as CanvasJS from '../../assets/canvasjs.min';
-import { ChartService } from '../services/chart.service';
+import { Meal } from '../models/meal';
 //var CanvasJS = require('./canvasjs.min');
 
 @Component({
@@ -9,40 +9,32 @@ import { ChartService } from '../services/chart.service';
 })
 
 export class ChartComponent implements OnInit {
-  constructor(private _chartService: ChartService) { }
+  @Input() datapoints: Meal[];
+
+  constructor() { }
 
   ngOnInit() {
+    console.log(this.datapoints);
+    let points = [];
+
+    this.datapoints.forEach(element => {
+        points.push({ y: element.kcal, label: element.name})
+      }
+    )
+
+    console.log(points);
     let chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Basic Column Chart in Angular"
+        text: "A napi kalóriabeviteled"
       },
       data: [{
         type: "column",
-        dataPoints: [
-          { y: 71, label: "Apple" },
-          { y: 55, label: "Mango" },
-          { y: 50, label: "Orange" },
-          { y: 65, label: "Banana" },
-          { y: 95, label: "Pineapple" },
-          { y: 68, label: "Pears" },
-          { y: 28, label: "Grapes" },
-          { y: 34, label: "Lychee" },
-          { y: 14, label: "Jackfruit" }
-        ]
+        dataPoints: points
       }]
     });
 
     chart.render();
-  }
-
-  private getData() {
-    let requestPayload = {
-      "id": 2,
-      "date": "2018-11-11"
-    };
-
-    this._chartService.getDiagramData(requestPayload);
   }
 }

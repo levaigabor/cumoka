@@ -14,11 +14,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
+import { ChartComponent } from './chart/chart.component';
 
 import { UserService } from './services/user/user.service';
 import { AuthenticationService } from './services/auth/authentication.service';
 import { JWTInterceptor } from './helpers/jwt-interceptor.service';
-import {ErrorInterceptor} from './helpers/error.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     DashboardComponent,
     LoginComponent,
     UserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
