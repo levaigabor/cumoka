@@ -38,6 +38,14 @@ const appRoutes: Routes = [
     component: TrainingPlansComponent,
     data: { title: 'Edzéstervek' },
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'new',
+        component: TrainingPageComponent,
+        data: { title: 'Event - Gifie' },
+        canActivate: [AuthGuard],
+      }
+    ]
   },
   { path: 'training/:id',
     component: TrainingPageComponent,

@@ -3,6 +3,7 @@ import { TrainingPlansService } from '../../services/user/training-plan/training
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { first, map } from 'rxjs/operators';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-training-plans',
@@ -17,6 +18,7 @@ export class TrainingPlansComponent implements OnInit {
   public submitted: boolean = true;
   public selectedTraining;
   public selectedActivity;
+  public newPlanForm: FormGroup;
 
 
   public testJson = [
@@ -163,12 +165,25 @@ export class TrainingPlansComponent implements OnInit {
   ];
 
   constructor(private _traningPlansService: TrainingPlansService,
-    private _httpClient: HttpClient, private _router: Router) { }
+    private _httpClient: HttpClient, private _router: Router,
+              private _formBuilder: FormBuilder) { }
 
 
-  onSubmit() { 
-    this.submitted = true; 
+  onSubmit() {
+    this.submitted = true;
     this.onCreateNewPlan();
+  }
+  get form() {
+    return this.newPlanForm.controls;
+  }
+
+  newPlan() {
+    this.newPlanForm = this._formBuilder.group({
+      name: [''],
+      type: [''],
+      date: [''],
+      count: ['']
+    });
   }
 
   ngOnInit() {

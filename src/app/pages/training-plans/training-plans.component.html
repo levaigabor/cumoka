@@ -6,7 +6,7 @@
 <div class="container trainingsList">
   <div class="allTrainingItems">
     <mat-grid-list cols="4" rowHeight="4:1" gutterSize="18">
-      <mat-grid-tile class="trainingItem" (click)="this.submitted = false;">Új edzés</mat-grid-tile>
+      <mat-grid-tile class="trainingItem" (click)="this.submitted = false;"><mat-icon>add</mat-icon> Új edzés</mat-grid-tile>
     </mat-grid-list>
     <mat-card class="newTrainingCard" *ngIf="!submitted">
       <mat-card-header>
@@ -14,18 +14,18 @@
       </mat-card-header>
       <mat-card-content>
         <div class="trainingFormContainer">
-          <form (ngSubmit)="onSubmit()" #planForm="ngForm">
+          <form (ngSubmit)="onSubmit()" [formGroup]="newPlanForm">
             <mat-form-field appearance="outline">
               <mat-label>Neve</mat-label>
-              <input matInput type="text" id="name" name="name" required>
+              <input matInput type="text" id="name" name="name" formControlName="name" required>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Időpont</mat-label>
-              <input matInput type="date" id="time" name="time" required>
+              <input matInput type="date" id="time" name="time" formControlName="date" required>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Típus</mat-label>
-              <input matInput aria-label="State" [matAutocomplete]="auto">
+              <input matInput aria-label="State" [matAutocomplete]="auto" formControlName="type">
               <mat-autocomplete #auto="matAutocomplete">
                 <mat-option *ngFor="let activity of allActivities" [value]="activity.name">
                   {{activity.name}}
@@ -34,7 +34,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Mennyiség (db/perc)</mat-label>
-              <input matInput type="number" id="count" name="count" required>
+              <input matInput type="number" id="count" name="count" formControlName="count" required>
             </mat-form-field>
             <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Hozzáadás</button>
           </form>

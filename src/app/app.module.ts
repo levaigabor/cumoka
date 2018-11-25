@@ -25,7 +25,7 @@ import { TrainingPageComponent } from './pages/training-page/training-page.compo
 import {
   MatAutocompleteModule,
   MatButtonModule,
-  MatCardModule, MatDatepickerModule, MatGridListModule,
+  MatCardModule, MatDatepickerModule, MatDialogModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule, MatNativeDateModule,
@@ -67,6 +67,7 @@ import {
     MatNativeDateModule,
     MatGridListModule,
     MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [
     UserService,

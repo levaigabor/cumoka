@@ -65,6 +65,7 @@ export class MealsComponent implements OnInit, AfterContentInit {
       console.log(meal);
       let newMeal = new Meal(meal['name'], meal['calories'], date);
       this.allExistingMealsOfUser.push(newMeal);
+      this.allAvailableMeals
     });
   }
 
