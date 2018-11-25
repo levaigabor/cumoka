@@ -1,61 +1,73 @@
+<mat-toolbar>
+  <div class="container">
+    <h1>Profilod</h1>
+  </div>
+</mat-toolbar>
 <div class="container">
-  <div>
-    <p>{{quote.qoute}}</p>
-  </div>
-  <div [hidden]="!editing">
-    <h1>Adataid</h1>
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-        <label for="name">Név:</label>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="user.username" name="name" #name="ngModel">
-        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-          Kitöltendő!
+  <mat-card class="quote">
+    <mat-card-content>
+      <p>{{quote.qoute}}</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Adataid</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm" [hidden]="!editing">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Név</mat-label>
+            <input matInput type="text" [(ngModel)]="user.username" name="name" #name="ngModel" required>
+            <mat-error *ngIf="email.invalid || name.pristine">Kitöltendő!</mat-error>
+          </mat-form-field>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="weight">Súly:</label>
-        <input type="text" class="form-control" id="weight" required [(ngModel)]="user.weight" name="weight" #weight="ngModel">
-        <div [hidden]="weight.valid || weight.pristine" class="alert alert-danger">
-          Kitöltendő!
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Súly</mat-label>
+            <input matInput type="text" [(ngModel)]="user.weight" name="name" #name="ngModel" required>
+            <mat-error *ngIf="weight.invalid || name.pristine">Kitöltendő!</mat-error>
+          </mat-form-field>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="weight">Magasság:</label>
-        <input type="text" class="form-control" id="height" required [(ngModel)]="user.height" name="height" #height="ngModel">
-        <div [hidden]="height.valid || height.pristine" class="alert alert-danger">
-          Kitöltendő!
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Magasság</mat-label>
+            <input matInput type="text" [(ngModel)]="user.height" name="height" #height="ngModel">
+            <mat-error *ngIf="height.invalid || name.pristine">Kitöltendő!</mat-error>
+          </mat-form-field>
         </div>
+
+        <button mat-stroked-button color="primary" type="submit" class="primary" [disabled]="!userForm.form.valid">Módosítás</button>
+      </form>
+      <div [hidden]="editing">
+        <mat-list>
+          <mat-list-item>
+            <h4 mat-line>Felhasználó név</h4>
+            <p mat-line> {{ user.username }} </p>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 mat-line>Súlyod</h4>
+            <p mat-line> {{ user.weight }} </p>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 mat-line>Magasságod</h4>
+            <p mat-line> {{ user.height }} </p>
+          </mat-list-item>
+        </mat-list>
+        <button mat-stroked-button color="primary" class="primary" (click)="editing=true">Szerkesztés</button>
       </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Módosítás</button>
-    </form>
-  </div>
-
-  <div [hidden]="editing">
-    <h2>Az adataid:</h2>
-    <div class="row">
-      <div class="col-xs-3">Név:</div>
-      <div class="col-xs-9  pull-left">{{ user.username }}</div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-3">Súly:</div>
-      <div class="col-xs-9 pull-left">{{ user.weight }} kg</div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-3">Magasság:</div>
-      <div class="col-xs-9 pull-left">{{ user.height }} cm</div>
-    </div>
-
-    <br>
-    <button class="btn btn-primary" (click)="editing=true">Szerkesztés</button>
-  </div>
-
-  <div>
-    <h3>A BMI-indexed</h3>
-    {{BMI | number}}
-  </div>
+      <div>
+        <mat-list>
+          <mat-list-item>
+            <h4 mat-line>BMI Index</h4>
+            <p mat-line> {{BMI | number}} </p>
+          </mat-list-item>
+        </mat-list>
+        <h3>A BMI-indexed</h3>
+        {{BMI | number}}
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

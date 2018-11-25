@@ -22,11 +22,12 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrainingPageComponent } from './pages/training-page/training-page.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule, MatDatepickerModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatNativeDateModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -61,7 +62,9 @@ import {
     MatIconModule,
     MatToolbarModule,
     MatDatepickerModule,
-    MatGridListModule
+    MatNativeDateModule,
+    MatGridListModule,
+    MatAutocompleteModule,
   ],
   providers: [
     UserService,

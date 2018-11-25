@@ -1,24 +1,30 @@
-<h1>Register user</h1>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="userRegisterEmailInput">Email address</label>
-    <input type="email" class="form-control" formControlName="userName" id="userRegisterEmailInput" aria-describedby="emailHelp"
-      placeholder="Enter email">
+<mat-toolbar>
+  <div class="container">
+    <h1>Regisztráció</h1>
   </div>
-  <div class="form-group">
-    <label for="userRegisterPasswordInput">Password</label>
-    <input type="password" class="form-control" formControlName="password" name="password" id="userRegisterPasswordInput"
-      placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="userRegisterHeightInput">Height</label>
-    <input type="password" class="form-control" formControlName="userHeight" name="height" id="userRegisterHeightInput"
-      placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="userRegisterWeightInput">Weight</label>
-    <input type="password" class="form-control" formControlName="userWeight" name="weight" id="userRegisterWeightInput"
-      placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</mat-toolbar>
+<mat-card>
+  <mat-card-content>
+    <div class="registrationContainer">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Email cím</mat-label>
+          <input matInput placeholder="" formControlName="userName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Jelszó</mat-label>
+          <input matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Magasság</mat-label>
+          <input matInput placeholder="Password" formControlName="userHeight">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Súly</mat-label>
+          <input matInput placeholder="Password" formControlName="userWeight">
+        </mat-form-field>
+        <button mat-stroked-button color="primary" type="submit" class="btn btn-primary">Regisztráció</button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

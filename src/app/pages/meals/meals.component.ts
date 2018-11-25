@@ -75,8 +75,30 @@ export class MealsComponent implements OnInit, AfterContentInit {
     this.listMealsForm = this._formBuilder.group({
       time: ['', Validators.required]
     });
-    this.getAvailableMeals();
-    this.loadExistingDataToDiagram();
+    // this.getAvailableMeals();
+    this.allAvailableMeals = [
+      {
+        "name": "Pushup",
+        "id": "2018-11-18",
+        "calories": 20
+      },
+      {
+        "name": "Pushup",
+        "id": "2018-11-18",
+        "calories": 20
+      },
+      {
+        "name": "Pushup",
+        "id": "2018-11-18",
+        "calories": 20
+      },
+      {
+        "name": "Pushup",
+        "id": "2018-11-18",
+        "calories": 20
+      }
+    ]
+    // this.loadExistingDataToDiagram();
     //this.pullAllExistingMealsOfUser();
   }
 

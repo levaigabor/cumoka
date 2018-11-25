@@ -10,6 +10,11 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
+h1 {
+  font-size: 2rem;
+  font-family: 'Muli', sans-serif;
+}
+
 .container {
   max-width: 1200px;
   margin: 24px auto 0;
@@ -21,4 +26,14 @@ mat-toolbar .container {
 
 mat-card-header .mat-card-header-text {
   margin: 0;
+}
+
+.mat-primary {
+  color: #F57A48!important;
+}
+
+.mat-toolbar {
+  background-color: #F57A48;
+  color: #fff;
+  font-family: 'Muli', sans-serif;
 }

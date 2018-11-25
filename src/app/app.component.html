@@ -13,6 +13,7 @@
       <mat-list-item routerLink="/user" routerLinkActive="active">Adatok</mat-list-item>
       <mat-list-item routerLink="/meals" routerLinkActive="active">Étkezés</mat-list-item>
       <mat-list-item routerLink="/training" routerLinkActive="active">Edzéstervek</mat-list-item>
+      <mat-list-item routerLink="/recipes" routerLinkActive="active">Receptek</mat-list-item>
     </mat-list>
   </mat-sidenav>
 
@@ -23,9 +24,10 @@
         <li routerLink="/login" routerLinkActive="active">Bejelentkezés</li>
       </ul>
       <ul *ngIf="userLoggedIn">
-          <li routerLink="/user" routerLinkActive="active">Adatok</li>
-          <li routerLink="/meals" routerLinkActive="active">Étkezés</li>
-          <li routerLink="/training" routerLinkActive="active">Edzéstervek</li>
+        <li routerLink="/user" routerLinkActive="active">Adatok</li>
+        <li routerLink="/meals" routerLinkActive="active">Étkezés</li>
+        <li routerLink="/training" routerLinkActive="active">Edzéstervek</li>
+        <!--<mat-list-item routerLink="/recipes" routerLinkActive="active">Receptek</mat-list-item>-->
       </ul>
     </nav>
     <button mat-button (click)="sidenav.toggle()" class="mobileMenu"><mat-icon>menu</mat-icon></button>
