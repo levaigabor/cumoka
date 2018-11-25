@@ -1,10 +1,10 @@
 <div class="container">
-  <div [hidden]="submitted">
-    <h1>Regisztráció</h1>
+  <div [hidden]="!submitted">
+    <h1>Adataid</h1>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
         <label for="name">Név:</label>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel">
+        <input type="text" class="form-control" id="name" required [(ngModel)]="user.username" name="name" #name="ngModel">
         <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
           Kitöltendő!
         </div>
@@ -12,9 +12,10 @@
 
       <div class="form-group">
         <label for="weight">Súly:</label>
-        <select class="form-control" id="weight" required [(ngModel)]="user.weight" name="weight" #weight="ngModel">
-          <option *ngFor="let weight of weights" [value]="weight">{{weight}}</option>
-        </select>
+        <input type="text" class="form-control" id="weight" required [(ngModel)]="user.weight" name="weight" #weight="ngModel">
+        <div [hidden]="weight.valid || weight.pristine" class="alert alert-danger">
+            Kitöltendő!
+          </div>
       </div>
 
       <div class="form-group">
@@ -25,21 +26,15 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="other">Egyéb:</label>
-        <input type="text" class="form-control" id="other" [(ngModel)]="user.other" name="other" #other="ngModel">
-      </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Mehet</button>
-
+      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Módosítás</button>
     </form>
   </div>
 
-  <div [hidden]="!submitted">
+  <div [hidden]="submitted">
     <h2>Az adataid:</h2>
     <div class="row">
       <div class="col-xs-3">Név:</div>
-      <div class="col-xs-9  pull-left">{{ user.name }}</div>
+      <div class="col-xs-9  pull-left">{{ user.username }}</div>
     </div>
     
     <div class="row">
@@ -52,11 +47,12 @@
       <div class="col-xs-9 pull-left">{{ user.height }} cm</div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-3">Egyéb:</div>
-      <div class="col-xs-9 pull-left">{{ user.other }}</div>
-    </div>
     <br>
-    <button class="btn btn-primary" (click)="submitted=false">Szerkesztés</button>
+    <button class="btn btn-primary" (click)="submitted=true">Szerkesztés</button>
   </div>
+
+  <div>
+      <h3>A BMI-indexed</h3>
+      {{BMI | number}}
+    </div>
 </div>

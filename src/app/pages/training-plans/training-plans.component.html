@@ -10,14 +10,14 @@
                 <label for="name">Az edzés típusa</label>
                 <input list="plans" id="name" required>
                 <datalist id="plans">
-                    <option *ngFor="let activity of allActivities" value="{{activity.id}}">{{activity.name}}</option>
+                    <option *ngFor="let activity of allActivities" value="{{activity.name}}"></option>
                 </datalist>
             </div>
             <div class="form-group">
                 <label for="count">Mennyiség (db/perc)</label>
                 <input type="number" id="count" name="count" required>
             </div>
-            <button type="submit" class="btn btn-success" [disabled]="!planForm.form.valid">Naplózás</button>
+            <button type="submit" class="btn btn-success" [disabled]="!planForm.form.valid">Naplózás</button>   
         </form>
     </div>
 </div>

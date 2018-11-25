@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-form',
@@ -9,34 +10,48 @@ import { UserService } from '../../services/user/user.service';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
+  public user;
+  public BMI;
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit() {
-    // this.getUserData();
+  constructor(private _userService: UserService) {
+    this.user = new User();
   }
 
-  weights = ['50', '60', '70', '80'];
-
-  user = new User('Johnny Bravo', "pass", 11, 170);
+  ngOnInit() {
+    this.getUserData();
+    this.getBMI();
+  }
 
   submitted = false;
 
-  // onSubmit() {
-  //   this.submitted = true;
-  //   this.setUserData();
-  // }
+  onSubmit() {
+    this.submitted = false;
+    this.setUserData();
+  }
 
-  // getUserData() {
-  //   const id = 0;
-  //   this.userService.getUserData(id)
-  //     .subscribe(user => this.user = user);
-  // }
+  public getBMI() {
+    this._userService.getBMIIndex(1)
+      .pipe(first()).subscribe(
+        index => {
+          this.BMI = index;
+        }
+      )
+  }
 
-  // setUserData(): void {
-  //     this.userService.setUserData(this.user)
-  //       .subscribe(() => console.log('setUserData finished!'));
-  // }
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.user); }
+  getUserData() {
+    const id = 1;
+    this._userService.getUserById(id)
+      .subscribe(user => {
+        console.log(user);
+        this.user = user
+      }
+      );
+  }
+
+  setUserData(): void {
+    this._userService.updateUser(this.user)
+      .subscribe(() => console.log('setUserData finished!'));
+
+    this.getBMI();
+  }
 }
