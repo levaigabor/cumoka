@@ -7,7 +7,7 @@
 <div class="container trainingsList">
   <div class="allTrainingItems">
     <mat-grid-list cols="4" rowHeight="4:1" gutterSize="18">
-      <button (click)="onCreateNewPlan()">Új terv készítése</button>
+      <mat-grid-tile>uj edyes</mat-grid-tile>
       <mat-grid-tile *ngFor="let item of allTranings"
                      (click)="onSelectTrainingPlan(item)" class="trainingItem">{{item.name}}</mat-grid-tile>
     </mat-grid-list>

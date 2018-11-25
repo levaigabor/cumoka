@@ -41,9 +41,10 @@ const appRoutes: Routes = [
   },
   { path: 'training/:id',
     component: TrainingPageComponent,
-    data: { title: 'Event - Gifie' },
-    canActivate: [AuthGuard],
+    data: { title: 'Training' },
+    canActivate: [AuthGuard]
   },
+  
   /*
   {
     path: 'recipes',
@@ -56,8 +57,8 @@ const appRoutes: Routes = [
     redirectTo: 'login',
     canActivate: [AuthGuard],
     pathMatch: 'full'
-  }
-  //{ path: '**', component: PageNotFoundComponent }
+  },
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

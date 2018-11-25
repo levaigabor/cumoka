@@ -198,10 +198,23 @@ export class TrainingPlansComponent implements OnInit {
 
   public onCreateNewPlan() {
     let requestBody = {
+      "activities": [
+        {
+          "countable": true,
+          "id": 0,
+          "name": "string",
+          "quantity": 0
+        }
+      ],
       "done": false,
-      "name": "Uj terv",
+      "id": 0,
+      "name": "string",
       "user": {
-        "username": "user1",
+        "height": 0,
+        "id": 0,
+        "password": "string",
+        "username": "string",
+        "weight": 0
       }
     };
     this._traningPlansService.createTrainingPlan(requestBody)
@@ -212,4 +225,28 @@ export class TrainingPlansComponent implements OnInit {
       );
   }
 
+  public onUpdateTrainingPlan() {
+    let id = "1";
+    let requestBody = {
+
+    };
+    this._traningPlansService.updateTrainingPlan(id, requestBody)
+      .pipe(first()).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
+
+  }
+
+  public onGetTrainingPlanOfUser() {
+    let username = "user1";
+    this._traningPlansService.getTrainingPlanByUsername(username)
+      .pipe(first()).subscribe(
+        plan => {
+          console.log(plan);
+        }
+      );
+
+  }
 }
