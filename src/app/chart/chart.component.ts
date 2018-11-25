@@ -14,7 +14,10 @@ export class ChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.datapoints);
+    this.createChart();
+  }
+
+  public createChart() {
     let points = [];
 
     this.datapoints.forEach(element => {
@@ -22,7 +25,6 @@ export class ChartComponent implements OnInit {
       }
     )
 
-    console.log(points);
     let chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
       exportEnabled: true,

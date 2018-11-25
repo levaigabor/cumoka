@@ -45,6 +45,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
   providers: [
     UserService,
     AuthenticationService,
+    /*
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,
@@ -54,7 +55,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    }*/
   ],
   bootstrap: [AppComponent]
 })

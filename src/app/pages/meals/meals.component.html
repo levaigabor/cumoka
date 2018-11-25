@@ -1,40 +1,22 @@
 <div class="container">
-    <div [hidden]="submitted">
+    <div>
         <h2>Elfogyasztott étel:</h2>
-        <form (ngSubmit)="onSubmit()" #mealForm="ngForm">
+        <form [formGroup]="mealForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="name">Az étel neve:</label>
-                <input list="meals" id="name" required [(ngModel)]="meal.name" name="name" #name="ngModel">
-                <datalist id="meals">
-                    <option value="Hambi"></option>
-                    <option value="Kenyér"></option>
-                    <option value="Sültkrumpli"></option>
+                <input list="name" id="meals" class="form-control" formControlName="name">
+                <datalist id="name">
+                    <option *ngFor="let meal of allAvailableMeals" data-value="{{meal.name}}" value="{{meal.id}}"></option>
                 </datalist>
             </div>
             <div class="form-group">
                 <label for="time">Időpont:</label>
-                <input type="date" id="time" name="time" required [(ngModel)]="meal.time" name="time" #time="ngModel">
+                <input type="date" class="form-control" formControlName="time" id="time" name="time">
             </div>
 
-            <button type="submit" class="btn btn-success" [disabled]="!mealForm.form.valid">Naplózás</button>
+            <button type="submit" class="btn btn-success">Naplózás</button>
         </form>
     </div>
 
     <chart-component [datapoints]="dailyMealsForDiagram"></chart-component>
-
-    <div [hidden]=!submitted>
-        <h2>Ezt etted:</h2>
-        <div class="row">
-            <div class="col-xs-3">Neve:</div>
-            <div class="col-xs-9  pull-left">{{ meal.name }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Időpont:</div>
-            <div class="col-xs-9  pull-left">{{ meal.time }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Tápértéke:</div>
-            <div class="col-xs-9  pull-left">{{ meal.kcal }} kCal</div>
-        </div>
-    </div>
 </div>

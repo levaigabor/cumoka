@@ -5,9 +5,9 @@ import { MealsComponent } from './pages/meals/meals.component';
 import { TrainingPlansComponent } from './pages/training-plans/training-plans.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
 import { LoginComponent } from './pages/login/login.component';
-import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './services/route-guard/auth.guard';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
+import { UserFormComponent } from './pages/user-form/user-form.component';
 
 const appRoutes: Routes = [
   {
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'user',
-    component: UserComponent,
+    component: UserFormComponent,
     data: { title: 'User' },
     canActivate: [AuthGuard],
   },
