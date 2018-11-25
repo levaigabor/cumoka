@@ -29,6 +29,7 @@ export class MealsComponent implements OnInit, AfterContentInit {
   }
 
   onSubmit() {
+    console.log(this.form.time.value)
     if (this.mealForm.invalid) {
       return;
     }
@@ -75,29 +76,7 @@ export class MealsComponent implements OnInit, AfterContentInit {
     this.listMealsForm = this._formBuilder.group({
       time: ['', Validators.required]
     });
-    // this.getAvailableMeals();
-    this.allAvailableMeals = [
-      {
-        "name": "Pushup",
-        "id": "2018-11-18",
-        "calories": 20
-      },
-      {
-        "name": "Pushup",
-        "id": "2018-11-18",
-        "calories": 20
-      },
-      {
-        "name": "Pushup",
-        "id": "2018-11-18",
-        "calories": 20
-      },
-      {
-        "name": "Pushup",
-        "id": "2018-11-18",
-        "calories": 20
-      }
-    ]
+    this.getAvailableMeals();
     // this.loadExistingDataToDiagram();
     //this.pullAllExistingMealsOfUser();
   }

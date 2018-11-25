@@ -27,7 +27,7 @@ export class MealsService {
     return this._httpClient.get<any>(this._requestUrl + 'logs/' + id);
   }
 
-  public getMealsOfUserByDate(username: string, date: string) {
+  public getMealsOfUserByDate(username: string, date) {
     return this._httpClient.get<any>(this._requestUrl + 'logs/' + username + '/' + date);
   }
 

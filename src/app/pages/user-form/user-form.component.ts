@@ -46,7 +46,7 @@ export class UserFormComponent implements OnInit {
       .pipe(first()).subscribe(
         quote => {
           this.quote = quote;
-          console.log(this.quote);
+          console.log(this.quote.qoute);
         }
       )
   }
