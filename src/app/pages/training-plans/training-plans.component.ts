@@ -14,7 +14,7 @@ export class TrainingPlansComponent implements OnInit {
   private _subs;
   public allTrainingPlans = [];
   public allActivities = [];
-  public submitted: boolean;
+  public submitted: boolean = true;
   public selectedTraining;
   public selectedActivity;
 
@@ -165,10 +165,14 @@ export class TrainingPlansComponent implements OnInit {
     private _httpClient: HttpClient, private _router: Router) { }
 
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() { 
+    this.submitted = true; 
+    this.onCreateNewPlan();
+  }
 
   ngOnInit() {
     this.getAllTrainingPlans();
+    this.getAllTrainingActivities();
   }
 
   public getAllTrainingPlans() {

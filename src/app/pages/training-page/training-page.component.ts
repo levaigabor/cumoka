@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {TrainingPlansService} from '../../services/user/training-plan/training-plans.service';
@@ -10,6 +10,7 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./training-page.component.css']
 })
 export class TrainingPageComponent implements OnInit {
+  @Input() id: number;
   private _pathSubs: Subscription;
   public training;
 

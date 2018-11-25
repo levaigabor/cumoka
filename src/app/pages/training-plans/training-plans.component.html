@@ -1,4 +1,3 @@
-
 <mat-toolbar>
   <div class="container">
     <h1>Edzéstervek</h1>
@@ -7,9 +6,49 @@
 <div class="container trainingsList">
   <div class="allTrainingItems">
     <mat-grid-list cols="4" rowHeight="4:1" gutterSize="18">
-      <mat-grid-tile>uj edyes</mat-grid-tile>
-      <mat-grid-tile *ngFor="let item of allTranings"
-                     (click)="onSelectTrainingPlan(item)" class="trainingItem">{{item.name}}</mat-grid-tile>
+      <mat-grid-tile class="trainingItem" (click)="this.submitted = false;">Új edzés</mat-grid-tile>
     </mat-grid-list>
+    <mat-card class="newTrainingCard" *ngIf="!submitted">
+      <mat-card-header>
+        <mat-card-title>Edzés hozzáadása</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="trainingFormContainer">
+          <form (ngSubmit)="onSubmit()" #planForm="ngForm">
+            <mat-form-field appearance="outline">
+              <mat-label>Neve</mat-label>
+              <input matInput type="text" id="name" name="name" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Időpont</mat-label>
+              <input matInput type="date" id="time" name="time" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Típus</mat-label>
+              <input matInput aria-label="State" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let activity of allActivities" [value]="activity.name">
+                  {{activity.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Mennyiség (db/perc)</mat-label>
+              <input matInput type="number" id="count" name="count" required>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Hozzáadás</button>
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-grid-list cols="4" rowHeight="4:1" gutterSize="18">
+      <mat-grid-tile *ngFor="let item of allTranings" (click)="onSelectTrainingPlan(item)" class="trainingItem">{{item.name}}</mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+<div>
+
+  <div class="container">
+
   </div>
 </div>
