@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './services/route-guard/auth.guard';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { UserFormComponent } from './pages/user-form/user-form.component';
+import { TrainingPageComponent } from './pages/training-page/training-page.component';
 
 const appRoutes: Routes = [
   {
@@ -37,7 +38,13 @@ const appRoutes: Routes = [
     component: TrainingPlansComponent,
     data: { title: 'Edzéstervek' },
     canActivate: [AuthGuard],
-  },/*
+  },
+  { path: 'training/:id',
+    component: TrainingPageComponent,
+    data: { title: 'Event - Gifie' },
+    canActivate: [AuthGuard],
+  },
+  /*
   {
     path: 'recipes',
     component: RecipesComponent,

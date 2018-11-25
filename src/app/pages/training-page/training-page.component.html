@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <div class="container">
+    <h1>{{training.name}}</h1>
+  </div>
+</mat-toolbar>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Edzés hozzáadása</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="trainingFormContainer">
+        <form (ngSubmit)="onSubmit()" #planForm="ngForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Időpont</mat-label>
+            <input matInput type="date" id="time" name="time" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Típusa</mat-label>
+            <input matInput list="plans" id="name" required>
+            <datalist id="plans">
+              <option *ngFor="let activity of allActivities" value="{{activity.id}}">{{activity.name}}</option>
+            </datalist>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Mennyiség (db/perc)</mat-label>
+            <input matInput type="number" id="count" name="count" required>
+          </mat-form-field>
+          <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Naplózás</button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="container">
+  <div class="trainingItemDetails">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Időpontja</th>
+        <th scope="col">Típusa</th>
+        <th scope="col">Mennyiség</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of training">
+        <td>{{ item.name }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.count }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

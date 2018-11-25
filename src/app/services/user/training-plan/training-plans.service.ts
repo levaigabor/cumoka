@@ -18,6 +18,7 @@ export class TrainingPlansService {
 
   private _trainingsUrl = 'http://localhost:8080/api/activityplans';
   private _trainingActivitiesUrl = 'http://localhost:8080/api/activities';
+  private _specificTrainingActivitiesUrl = 'http://localhost:8080/api/activities/';
 
 
   constructor(private _httpClient: HttpClient) { }
@@ -28,5 +29,9 @@ export class TrainingPlansService {
 
   public getTrainingActivities(): Observable<any> {
     return this._httpClient.get<any>(this._trainingActivitiesUrl);
+  }
+
+  public getSpecificTraining(id): Observable<any> {
+    return this._httpClient.get<any>(this._specificTrainingActivitiesUrl + id);
   }
 }

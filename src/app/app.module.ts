@@ -19,6 +19,18 @@ import { UserService } from './services/user/user.service';
 import { AuthenticationService } from './services/auth/authentication.service';
 import { JWTInterceptor } from './helpers/jwt-interceptor.service';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TrainingPageComponent } from './pages/training-page/training-page.component';
+import {
+  MatButtonModule,
+  MatCardModule, MatDatepickerModule, MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
+
 
 
 @NgModule({
@@ -31,14 +43,25 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     DashboardComponent,
     LoginComponent,
     RegisterUserComponent,
-    ChartComponent
+    ChartComponent,
+    TrainingPageComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatGridListModule
   ],
   providers: [
     UserService,
