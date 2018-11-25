@@ -19,4 +19,31 @@
     </div>
 
     <chart-component [datapoints]="dailyMealsForDiagram"></chart-component>
+
+    <div class="form-group">
+        <form [formGroup]="listMealsForm" (ngSubmit)="onSubmitList()">
+            <div class="form-group">
+                <label for="time">Időpont:</label>
+                <input type="date" class="form-control" (change)="onDateListChange()" formControlName="time" id="time" name="time">
+            </div>
+        </form>
+    </div>
+
+    <div class="listedMeals">
+        <h4>Az általad fogyasztott ételek</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Név</th>
+                    <th scope="col">Kalória</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let meal of allExistingMealsOfUser">
+                    <td>{{ meal.name }}</td>
+                    <td>{{ meal.kcal }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

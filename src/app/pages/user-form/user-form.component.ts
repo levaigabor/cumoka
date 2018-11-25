@@ -12,20 +12,23 @@ import { first } from 'rxjs/operators';
 export class UserFormComponent implements OnInit {
   public user;
   public BMI;
+  public quote;
 
   constructor(private _userService: UserService) {
     this.user = new User();
+    this.quote = [];
   }
 
   ngOnInit() {
     this.getUserData();
     this.getBMI();
+    this.getQuotes();
   }
 
-  submitted = false;
+  editing = false;
 
   onSubmit() {
-    this.submitted = false;
+    this.editing = false;
     this.setUserData();
   }
 
@@ -34,6 +37,16 @@ export class UserFormComponent implements OnInit {
       .pipe(first()).subscribe(
         index => {
           this.BMI = index;
+        }
+      )
+  }
+
+  public getQuotes() {
+    this._userService.getQuotes()
+      .pipe(first()).subscribe(
+        quote => {
+          this.quote = quote;
+          console.log(this.quote);
         }
       )
   }

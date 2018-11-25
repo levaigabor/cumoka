@@ -37,14 +37,13 @@ const appRoutes: Routes = [
     component: TrainingPlansComponent,
     data: { title: 'Edzéstervek' },
     canActivate: [AuthGuard],
-  },
+  },/*
   {
     path: 'recipes',
     component: RecipesComponent,
     data: { title: 'Receptek' },
     canActivate: [AuthGuard],
-  },
-
+  },*/
   {
     path: '',
     redirectTo: 'login',

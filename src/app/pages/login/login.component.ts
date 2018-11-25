@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/auth/authentication.service';
-import {first} from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
   public returnUrl: string;
 
   constructor(private _formBuilder: FormBuilder,
-              private _authenticationService: AuthenticationService,
-              private _route: ActivatedRoute,
-              private _router: Router) { }
+    private _authenticationService: AuthenticationService,
+    private _route: ActivatedRoute,
+    private _router: Router) { }
 
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   get form() {
     return this.loginForm.controls;
   }
-
+  
   public onSubmit() {
     this.submitted = true;
 

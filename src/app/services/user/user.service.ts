@@ -8,29 +8,34 @@ import { User } from '../../models/user';
 })
 export class UserService {
   public userURL = 'http://localhost:8080/api/users/';
-  constructor(private http: HttpClient) { }
+  public quotesUrl = 'http://localhost:8080/api/quotes';
+  constructor(private _http: HttpClient) { }
 
   public getAllUsers() {
-    return this.http.get<User[]>(this.userURL);
+    return this._http.get<User[]>(this.userURL);
   }
 
   public getUserById(id: number) {
-    return this.http.get(this.userURL + id);
+    return this._http.get(this.userURL + id);
   }
 
   public registerUser(user: User) {
-    return this.http.post(this.userURL + 'register', user);
+    return this._http.post(this.userURL + 'register', user);
   }
 
   public updateUser(user: User) {
-    return this.http.put(this.userURL + user.id, user);
+    return this._http.put(this.userURL + user.id, user);
   }
 
   public deleteUser(id: number) {
-    return this.http.delete(this.userURL + id);
+    return this._http.delete(this.userURL + id);
   }
 
   public getBMIIndex(id: number) {
-    return this.http.get<number>(this.userURL + 'bmi/' + id);
+    return this._http.get<number>(this.userURL + 'bmi/' + id);
+  }
+
+  public getQuotes() {
+    return this._http.get<any>(this.quotesUrl);
   }
 }
