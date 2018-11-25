@@ -18,6 +18,7 @@ export class TrainingPlansComponent implements OnInit {
   public selectedTraining;
   public selectedActivity;
 
+
   public testJson = [
     {
       "id": 1,
@@ -204,21 +205,16 @@ export class TrainingPlansComponent implements OnInit {
     let requestBody = {
       "activities": [
         {
-          "countable": true,
-          "id": 0,
-          "name": "string",
-          "quantity": 0
+          "countable": false,
+          "id": this.getSelectedTrainingId(),
+          "quantity": this.form.count.value
         }
       ],
       "done": false,
       "id": 0,
       "name": "string",
       "user": {
-        "height": 0,
-        "id": 0,
-        "password": "string",
-        "username": "string",
-        "weight": 0
+        "username": "user1"
       }
     };
     this._traningPlansService.createTrainingPlan(requestBody)
@@ -241,6 +237,17 @@ export class TrainingPlansComponent implements OnInit {
         }
       );
 
+  }
+
+  public getSelectedTrainingId() {
+    let id = 0;
+    this.allActivities.forEach(element => {
+      if (element.name === this.form.type.value) {
+        id = element.id;
+        console.log("Element found: " + id);
+      }
+    });
+    return { "id": id };
   }
 
   public onGetTrainingPlanOfUser() {
