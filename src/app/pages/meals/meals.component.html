@@ -52,20 +52,27 @@
     </mat-card>
 
     <div class="listedMeals">
-        <h4>Az általad fogyasztott ételek</h4>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Név</th>
-                    <th scope="col">Kalória</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let meal of allExistingMealsOfUser">
-                    <td>{{ meal.name }}</td>
-                    <td>{{ meal.kcal }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <!--<h4>Az általad fogyasztott ételek</h4>-->
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Az általad fogyasztott ételek</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">Név</th>
+                <th scope="col">Kalória</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let meal of allExistingMealsOfUser">
+                <td>{{ meal.name }}</td>
+                <td>{{ meal.kcal }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
     </div>
 </div>

@@ -43,8 +43,13 @@ h1 {
 }
 
 .navigation ul li.active {
-  color: #F57A48;
-  border-bottom: 2px solid #F57A48;
+  color: #ff52b3;
+  border-bottom: 2px solid #ff52b3;
+}
+
+.navigation ul li img {
+  max-width: 150px;
+  display: block;
 }
 
 mat-sidenav-content {
@@ -57,11 +62,15 @@ mat-sidenav-content {
 }
 
 .mobileMenu {
-  top: 24px;
-  left: 24px;
+  top: 12px;
+  left: 0;
   position: absolute;
 }
 
 .mat-card-header-text {
   margin: 0;
+}
+
+.mat-drawer {
+  width: 224px;
 }

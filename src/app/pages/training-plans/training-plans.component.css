@@ -18,8 +18,8 @@
   transform: translateY(2px);
   box-shadow: none;
   transition: 225ms cubic-bezier(.52,.27,.4,1.52);
-  border-color: #F57A48;
-  background-color: #F57A48;
+  border-color: #ff52b3;
+  background-color: #ff52b3;
 }
 
 .trainingItem p {
