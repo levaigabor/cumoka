@@ -27,6 +27,10 @@ export class TrainingPlansService {
     return this._httpClient.get<any>(this._trainingsUrl);
   }
 
+  public createTrainingPlan(requestBody) {
+    return this._httpClient.post<any>(this._trainingsUrl, requestBody);
+  }
+
   public getTrainingActivities(): Observable<any> {
     return this._httpClient.get<any>(this._trainingActivitiesUrl);
   }

@@ -12,7 +12,7 @@ import { first, map } from 'rxjs/operators';
 export class TrainingPlansComponent implements OnInit {
 
   private _subs;
-  public allTranings = [];
+  public allTrainingPlans = [];
   public allActivities = [];
   public submitted: boolean;
   public selectedTraining;
@@ -168,15 +168,14 @@ export class TrainingPlansComponent implements OnInit {
   onSubmit() { this.submitted = true; }
 
   ngOnInit() {
-    // this.getAllTrainingActivities();
-    this.allTranings = this.testJson
+    this.getAllTrainingPlans();
   }
 
   public getAllTrainingPlans() {
     this._traningPlansService.getTrainingPlans()
       .pipe(first()).subscribe(
         plans => {
-        this.allTranings = plans;
+        this.allTrainingPlans = plans;
       });
   }
 
@@ -195,6 +194,22 @@ export class TrainingPlansComponent implements OnInit {
 
   public onSelectActivity(item) {
     this.selectedActivity = item;
+  }
+
+  public onCreateNewPlan() {
+    let requestBody = {
+      "done": false,
+      "name": "Uj terv",
+      "user": {
+        "username": "user1",
+      }
+    };
+    this._traningPlansService.createTrainingPlan(requestBody)
+      .pipe(first()).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
   }
 
 }

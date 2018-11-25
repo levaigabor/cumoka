@@ -8,7 +8,7 @@ import {AuthenticationService} from './services/auth/authentication.service';
 })
 export class AppComponent {
   title = 'The Fitness App';
-  userLoggedIn = false;
+  userLoggedIn = true;
   opened: false;
 
   constructor(private _authenticationService: AuthenticationService) {
