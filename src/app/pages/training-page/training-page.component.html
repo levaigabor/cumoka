@@ -4,7 +4,7 @@
   </div>
 </mat-toolbar>
 <div class="container">
-  <mat-card>
+  <mat-card class="newTrainingCard">
     <mat-card-header>
       <mat-card-title>Edzés hozzáadása</mat-card-title>
     </mat-card-header>
@@ -26,7 +26,7 @@
             <mat-label>Mennyiség (db/perc)</mat-label>
             <input matInput type="number" id="count" name="count" required>
           </mat-form-field>
-          <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Naplózás</button>
+          <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Hozzáadás</button>
         </form>
       </div>
     </mat-card-content>

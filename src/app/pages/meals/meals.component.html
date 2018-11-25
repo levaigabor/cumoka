@@ -1,33 +1,63 @@
+<mat-toolbar>
+  <div class="container">
+    <h1>Ételek</h1>
+  </div>
+</mat-toolbar>
 <div class="container">
-    <div>
-        <h2>Elfogyasztott étel:</h2>
-        <form [formGroup]="mealForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="name">Az étel neve:</label>
-                <input list="name" id="meals" class="form-control" formControlName="name">
-                <datalist id="name">
-                    <option *ngFor="let meal of allAvailableMeals" data-value="{{meal.name}}" value="{{meal.id}}"></option>
-                </datalist>
-            </div>
-            <div class="form-group">
-                <label for="time">Időpont:</label>
-                <input type="date" class="form-control" formControlName="time" id="time" name="time">
-            </div>
+  <mat-card class="mealFormCard">
+    <mat-card-header>
+      <mat-card-title>Elfogyasztott étel</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="mealForm" (ngSubmit)="onSubmit()" class="mealForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Ételek</mat-label>
+          <input matInput placeholder="Ételek" aria-label="State" [matAutocomplete]="auto" formControlName="name">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let meal of allAvailableMeals" [value]="meal.id">
+              <span>{{meal.name}}</span> |
+              <small>kcal: {{meal.calories}}</small>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Időpont</mat-label>
+          <input matInput [matDatepicker]="mealDatePicker" placeholder="Időpont">
+          <mat-datepicker-toggle matSuffix [for]="mealDatePicker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #mealDatePicker></mat-datepicker>
+        </mat-form-field>
+        <button mat-stroked-button color="primary" type="submit" class="primary">Hozzáadás</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-            <button type="submit" class="btn btn-success">Naplózás</button>
-        </form>
-    </div>
+  <mat-card class="chartCard">
+    <mat-card-content>
+      <chart-component [datapoints]="dailyMealsForDiagram"></chart-component>
+    </mat-card-content>
+  </mat-card>
 
-    <chart-component [datapoints]="dailyMealsForDiagram"></chart-component>
 
-    <div class="form-group">
+    <mat-card class="mealSelect">
+      <mat-card-header>
+        <mat-card-title>Étel Napló</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <form [formGroup]="listMealsForm" (ngSubmit)="onSubmitList()">
-            <div class="form-group">
-                <label for="time">Időpont:</label>
-                <input type="date" class="form-control" (change)="onDateListChange()" formControlName="time" id="time" name="time">
-            </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Időpont</mat-label>
+            <input matInput [matDatepicker]="allMealsDatePicker" (change)="onDateListChange()"
+                   placeholder="Időpont" formControlName="time">
+            <mat-datepicker-toggle matSuffix [for]="allMealsDatePicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #allMealsDatePicker></mat-datepicker>
+          </mat-form-field>
         </form>
-    </div>
+      </mat-card-content>
+    </mat-card>
 
     <div class="listedMeals">
         <h4>Az általad fogyasztott ételek</h4>

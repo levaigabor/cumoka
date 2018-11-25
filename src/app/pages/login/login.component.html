@@ -1,19 +1,21 @@
+<mat-toolbar>
+  <div class="container">
+    <h1>Bejelentkezés</h1>
+  </div>
+</mat-toolbar>
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Bejelentkezés</mat-card-title>
-  </mat-card-header>
   <mat-card-content>
     <div class="loginContainer">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
-          <mat-label>Email address</mat-label>
+          <mat-label>Email cím</mat-label>
           <input matInput placeholder="Email address" formControlName="username">
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>Jelszó</mat-label>
           <input matInput placeholder="Password" formControlName="password">
         </mat-form-field>
-        <button mat-stroked-button color="primary" type="submit" class="btn btn-primary">Submit</button>
+        <button mat-stroked-button color="primary" type="submit" class="btn btn-primary">Bejelentkezés</button>
       </form>
     </div>
   </mat-card-content>
