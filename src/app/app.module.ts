@@ -11,7 +11,6 @@ import { UserFormComponent } from './pages/user-form/user-form.component';
 import { MealsComponent } from './pages/meals/meals.component';
 import { TrainingPlansComponent } from './pages/training-plans/training-plans.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { ChartComponent } from './chart/chart.component';
@@ -30,7 +29,8 @@ import {
   MatInputModule,
   MatListModule, MatNativeDateModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 
@@ -42,8 +42,7 @@ import {
     MealsComponent,
     TrainingPlansComponent,
     // RecipesComponent,
-    DashboardComponent,
-    LoginComponent,
+    LoginComponent, 
     RegisterUserComponent,
     ChartComponent,
     TrainingPageComponent
@@ -67,12 +66,12 @@ import {
     MatNativeDateModule,
     MatGridListModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [
     UserService,
     AuthenticationService,
-    /*
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,
@@ -82,7 +81,7 @@ import {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }*/
+    }
   ],
   bootstrap: [AppComponent]
 })

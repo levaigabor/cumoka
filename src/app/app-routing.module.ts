@@ -42,7 +42,7 @@ const appRoutes: Routes = [
       {
         path: 'new',
         component: TrainingPageComponent,
-        data: { title: 'Event - Gifie' },
+        data: { title: 'Új terv' },
         canActivate: [AuthGuard],
       }
     ]

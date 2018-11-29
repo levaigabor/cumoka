@@ -4,17 +4,18 @@
 <!--</div>-->
 
 <mat-sidenav-container class="example-container" [hasBackdrop]="true">
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
     <mat-list *ngIf="!userLoggedIn">
       <mat-list-item routerLink="/register" routerLinkActive="active">Regisztráció</mat-list-item>
       <mat-list-item routerLink="/login" routerLinkActive="active">Bejelentkezés</mat-list-item>
     </mat-list>
     <mat-list *ngIf="userLoggedIn">
-      <mat-list-item><div><img src="../assets/Mafunzo.png" alt=""></div></mat-list-item>
+      <mat-list-item><div><img src="../assets/Mafunzo.png" class="brand-logo" alt=""></div></mat-list-item>
       <mat-list-item routerLink="/user" routerLinkActive="active">Adatok</mat-list-item>
       <mat-list-item routerLink="/meals" routerLinkActive="active">Étkezés</mat-list-item>
       <mat-list-item routerLink="/training" routerLinkActive="active">Edzéstervek</mat-list-item>
       <mat-list-item routerLink="/recipes" routerLinkActive="active">Receptek</mat-list-item>
+      <mat-list-item (click)="this.logout()" class="logout">Kijelentkezés</mat-list-item>
     </mat-list>
   </mat-sidenav>
 
@@ -29,7 +30,7 @@
         <li routerLink="/user" routerLinkActive="active">Adatok</li>
         <li routerLink="/meals" routerLinkActive="active">Étkezés</li>
         <li routerLink="/training" routerLinkActive="active">Edzéstervek</li>
-        <!--<mat-list-item routerLink="/recipes" routerLinkActive="active">Receptek</mat-list-item>-->
+        <li (click)="this.logout()" class="logout">Kijelentkezés</li>
       </ul>
     </nav>
     <button mat-button (click)="sidenav.toggle()" class="mobileMenu"><mat-icon>menu</mat-icon></button>

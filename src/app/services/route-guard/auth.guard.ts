@@ -6,8 +6,9 @@ import { AuthenticationService } from '../auth/authentication.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private _authenticationService: AuthenticationService, private _router: Router) {
 
+  constructor(private _authenticationService: AuthenticationService, private _router: Router) {
+    
   }
 
   canActivate(
@@ -27,7 +28,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
 
   checkLogin(url: string): boolean {
-    if (this._authenticationService.isLoggedIn) {
+    let _currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (_currentUser) {
+      this._authenticationService.isLoggedIn = true;
       console.log('auth successful');
       return true;
     }

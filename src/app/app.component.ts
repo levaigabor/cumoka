@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {AuthenticationService} from './services/auth/authentication.service';
+import { AuthenticationService } from './services/auth/authentication.service';
+import { RouterEvent, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,29 @@ import {AuthenticationService} from './services/auth/authentication.service';
 })
 export class AppComponent {
   title = 'The Fitness App';
-  userLoggedIn = true;
+  userLoggedIn = false;
   opened: false;
+  
+  constructor(private _authenticationService: AuthenticationService,
+    private _router: Router) {
+    _router.events.subscribe((event: RouterEvent) => {
+      this.navigationInterceptor(event);
+    });
+  }
 
-  constructor(private _authenticationService: AuthenticationService) {
-    if (this._authenticationService.isLoggedIn) {
-      this.userLoggedIn = true;
-      return;
+  navigationInterceptor(event: RouterEvent): void {
+    if (event instanceof NavigationEnd) {
+      if (this._authenticationService.isLoggedIn) {
+        this.userLoggedIn = true;
+        window.scrollTo(0, 0);
+        return;
+      } else {
+        this.userLoggedIn = false;
+      }
     }
+  }
+
+  public logout() {
+    this._authenticationService.logout();
   }
 }

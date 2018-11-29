@@ -9,21 +9,22 @@
     <div class="registrationContainer">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
-          <mat-label>Email cím</mat-label>
-          <input matInput placeholder="" formControlName="userName">
+          <mat-label>Felhasználónév</mat-label>
+          <input matInput formControlName="username">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Jelszó</mat-label>
-          <input matInput placeholder="Password" formControlName="password">
+          <input matInput type="password" formControlName="password">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Magasság</mat-label>
-          <input matInput placeholder="Password" formControlName="userHeight">
+          <input matInput formControlName="height">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Súly</mat-label>
-          <input matInput placeholder="Password" formControlName="userWeight">
+          <input matInput formControlName="weight">
         </mat-form-field>
+        <input type="hidden" formControlName="enabled">
         <button mat-stroked-button color="primary" type="submit" class="btn btn-primary">Regisztráció</button>
       </form>
     </div>

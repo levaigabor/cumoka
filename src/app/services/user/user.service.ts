@@ -20,7 +20,8 @@ export class UserService {
   }
 
   public registerUser(user: User) {
-    return this._http.post(this.userURL + 'register', user);
+    console.log(user);
+    return this._http.post(this.userURL + 'signup', user);
   }
 
   public updateUser(user: User) {

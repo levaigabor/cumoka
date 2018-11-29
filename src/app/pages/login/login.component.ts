@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { first } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
     private _authenticationService: AuthenticationService,
     private _route: ActivatedRoute,
-    private _router: Router) { }
+    private _router: Router,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
@@ -26,7 +28,11 @@ export class LoginComponent implements OnInit {
       password: ['']
     });
 
-    this._authenticationService.logout();
+
+    if (this._authenticationService.isLoggedIn) {
+      console.log('navigate to user page')
+      this._router.navigate(['/user']);
+    }
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -46,12 +52,24 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this._router.navigate([this.returnUrl]);
+          this._router.navigate(['/user']);
+          this.openErrorSnackBar('Sikeres Bejelentkezés!', 'Bezárás');
         },
         error => {
           this.loading = false;
+          this.openErrorSnackBar('Sikertelen Bejelentkezés!', 'Bezárás');
         });
   }
+
+  openErrorSnackBar(message: string, action?: string): void {
+    this.snackBar.open(message, action, {
+      duration: 4000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'sfToast--error'
+    });
+  }
+
 
 }
 

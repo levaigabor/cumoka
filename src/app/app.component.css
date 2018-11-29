@@ -42,6 +42,16 @@ h1 {
   cursor: pointer;
 }
 
+.navigation ul li:hover {
+  background-color: #fafafa;
+}
+
+.brand-logo {
+  max-width: 170px;
+  display: block;
+  margin: 0 auto;
+}
+
 .navigation ul li.active {
   color: #ff52b3;
   border-bottom: 2px solid #ff52b3;
@@ -73,4 +83,22 @@ mat-sidenav-content {
 
 .mat-drawer {
   width: 224px;
+}
+
+.quote p {
+  text-align: center
+}
+
+mat-list-item.logout,
+.navigation .logout {
+  position: absolute;
+  right: 0;
+}
+
+mat-sidenav mat-list-item {
+  cursor: pointer;
+}
+
+mat-sidenav mat-list-item:hover {
+  background-color: #fafafa;
 }
