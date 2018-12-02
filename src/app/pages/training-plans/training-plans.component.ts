@@ -16,8 +16,9 @@ export class TrainingPlansComponent implements OnInit {
   public allTrainingPlans = [];
   public allActivities = [];
   public submitted: boolean = true;
-  public selectedTraining;
+  public selectedTraining = {};
   public selectedActivity;
+  public trainingPlanClicked: boolean = false;
   public newPlanForm: FormGroup;
 
   constructor(private _traningPlansService: TrainingPlansService,
@@ -31,10 +32,6 @@ export class TrainingPlansComponent implements OnInit {
 
   get form() {
     return this.newPlanForm.controls;
-  }
-
-  newPlan() {
-
   }
 
   ngOnInit() {
@@ -66,7 +63,10 @@ export class TrainingPlansComponent implements OnInit {
 
   public onSelectTrainingPlan(item) {
     this.selectedTraining = item;
-    this._router.navigate(['training', item.id]);
+    this.submitted = true;
+    this.trainingPlanClicked = true;
+    console.log("Selected:  ", item);
+
   }
 
   public onSelectActivity(item) {

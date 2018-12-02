@@ -1,8 +1,8 @@
-<mat-toolbar *ngIf="training.name">
-  <div class="container">
-    <h1>{{training.name}}</h1>
-  </div>
-</mat-toolbar>
+<mat-toolbar>
+    <div class="container">
+      <h1>{{ trainingPlan.name }}</h1>
+    </div>
+  </mat-toolbar>
 <div class="container">
   <mat-card class="newTrainingCard">
     <mat-card-header>
@@ -12,11 +12,7 @@
       <div class="trainingFormContainer">
         <form (ngSubmit)="onSubmit()" #planForm="ngForm">
           <mat-form-field appearance="outline">
-            <mat-label>Időpont</mat-label>
-            <input matInput type="date" id="time" name="time" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Típusa</mat-label>
+            <mat-label>Típus</mat-label>
             <input matInput list="plans" id="name" required>
             <datalist id="plans">
               <option *ngFor="let activity of allActivities" value="{{activity.id}}">{{activity.name}}</option>
@@ -37,16 +33,14 @@
     <table class="table table-hover">
       <thead>
       <tr>
-        <th scope="col">Időpontja</th>
         <th scope="col">Típusa</th>
         <th scope="col">Mennyiség</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of training">
-        <td>{{ item.name }}</td>
-        <td>{{ item.date }}</td>
-        <td>{{ item.count }}</td>
+      <tr *ngFor="let training of trainingPlan.activities">
+        <td>{{ training.name }}</td>
+        <td>{{ training.quantity }}</td>
       </tr>
       </tbody>
     </table>

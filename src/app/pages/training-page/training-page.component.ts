@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Subscription } from 'rxjs';
-import {TrainingPlansService} from '../../services/user/training-plan/training-plans.service';
-import {first} from 'rxjs/operators';
+import { TrainingPlansService } from '../../services/user/training-plan/training-plans.service';
+import { first } from 'rxjs/operators';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-training-page',
@@ -10,22 +9,32 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./training-page.component.css']
 })
 export class TrainingPageComponent implements OnInit {
-  @Input() id: number;
-  private _pathSubs: Subscription;
+  @Input() trainingPlan = {};
+  @Input() allActivities = [];
   public training;
+  public isTrainingsLoaded;
 
-  constructor(private _activatedRoute: ActivatedRoute,
-              private _traningPlansService: TrainingPlansService) { }
+
+  constructor(private _traningPlansService: TrainingPlansService, private _formBuilder: FormBuilder) {
+    this.isTrainingsLoaded = false;
+  }
 
   ngOnInit() {
-    this._pathSubs = this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      let selectedID = + params.get('id');
-      this._traningPlansService.getSpecificTraining(selectedID)
-        .pipe(first()).subscribe(
+
+    /*
+    this._traningPlansService.getSpecificTraining(this.id)
+      .pipe(first()).subscribe(
         training => {
           this.training = training;
+          this.isTrainingsLoaded = true;
+          console.log(this.training["name"]);
         });
-    });
+
+    */
+  }
+
+  onSubmit() {
+
   }
 
 }

@@ -41,7 +41,6 @@ import {
     UserFormComponent,
     MealsComponent,
     TrainingPlansComponent,
-    // RecipesComponent,
     LoginComponent, 
     RegisterUserComponent,
     ChartComponent,
