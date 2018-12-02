@@ -18,7 +18,6 @@ export class AuthenticationService {
       .pipe(map(response => {
         if (response && response.token) {
           localStorage.setItem('currentUser', JSON.stringify(response));
-          //localStorage.setItem('userId', JSON.stringify(response['userId']));
           this.getUserId(username);
           this.isLoggedIn = true;
           console.log('login successful');
@@ -43,6 +42,7 @@ export class AuthenticationService {
 
   public logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userId');
     this.isLoggedIn = false;
     this._router.navigate(['/login']);
   }

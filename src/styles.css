@@ -41,6 +41,10 @@ mat-card-header .mat-card-header-text {
   font-family: 'Muli', sans-serif;
 }
 
+mat-card-title {
+  font-size: 30px!important;
+}
+
 .mat-drawer-container {
   background-color: #fff;
 }

@@ -3,7 +3,7 @@ import { TrainingPlansService } from '../../services/user/training-plan/training
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class TrainingPlansComponent implements OnInit {
 
   ngOnInit() {
     this.newPlanForm = this._formBuilder.group({
-      name: ['']
+      name: ['', Validators.required]
     });
     this.getCurrentUserName();
     this.getAllTrainingPlans();
@@ -76,9 +76,7 @@ export class TrainingPlansComponent implements OnInit {
   public onCreateNewPlan() {
     let id = JSON.parse(localStorage.getItem('userId'));
     let requestBody = {
-      "activities": [
-        { }
-      ],
+      "activities": [],
       "done": false,
       "id": Math.random,
       "name": this.form.name.value,

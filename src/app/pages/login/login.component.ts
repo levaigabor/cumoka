@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this._router.navigate(['/user']);
+          this._router.navigate(['/meals']);
           this.openErrorSnackBar('Sikeres Bejelentkezés!', 'Bezárás');
         },
         error => {

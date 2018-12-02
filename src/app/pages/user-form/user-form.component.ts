@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
 import { first } from 'rxjs/operators';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-user-form',
@@ -10,6 +11,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
+  public id = 0;
   public user;
   public BMI;
   public quote;
@@ -20,6 +22,7 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.id = JSON.parse(localStorage.getItem('userId'));
     this.getUserData();
     this.getQuotes();
   }
@@ -33,8 +36,7 @@ export class UserFormComponent implements OnInit {
   }
 
   public getBMI() {
-    let id = JSON.parse(localStorage.getItem('userId'));
-    this._userService.getBMIIndex(id)
+    this._userService.getBMIIndex(this.id)
       .pipe(first()).subscribe(
         index => {
           this.BMI = index;
@@ -53,15 +55,13 @@ export class UserFormComponent implements OnInit {
   }
 
   getUserData() {
-    this.getBMI();
-
-    let id = JSON.parse(localStorage.getItem('userId'));
-    this._userService.getUserById(id)
+    this._userService.getUserById(this.id)
       .subscribe(user => {
         console.log(user);
         this.user = user
       }
     );
+    this.getBMI();
   }
 
   setUserData(): void {

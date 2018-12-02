@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TrainingPlansService } from '../../services/user/training-plan/training-plans.service';
-import { first } from 'rxjs/operators';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-training-page',
@@ -21,8 +20,8 @@ export class TrainingPageComponent implements OnInit {
 
   ngOnInit() {
     this.activityForm = this._formBuilder.group({
-      type: [''],
-      count: ['']
+      type: ['', Validators.required],
+      count: ['', Validators.required]
     });
   }
 
@@ -30,8 +29,11 @@ export class TrainingPageComponent implements OnInit {
     return this.activityForm.controls;
   }
 
-  onSubmit() {
+  onActivitiesSubmit() {
     console.log(this.form.type.value);
+    if(this.activityForm.invalid) {
+      return;
+    }
   }
 
 }

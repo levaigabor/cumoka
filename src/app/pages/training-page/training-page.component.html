@@ -10,7 +10,7 @@
     </mat-card-header>
     <mat-card-content>
       <div class="trainingFormContainer">
-        <form (ngSubmit)="onSubmit()" [formGroup]="activityForm">
+        <form (ngSubmit)="onActivitiesSubmit()" [formGroup]="activityForm">
           <mat-form-field appearance="outline">
             <mat-label>Típus</mat-label>
             <input matInput aria-label="State" [matAutocomplete]="auto" formControlName="type" required>
@@ -24,7 +24,7 @@
             <mat-label>Mennyiség (db/perc)</mat-label>
             <input matInput type="number" id="count" name="count" formControlName="count" required>
           </mat-form-field>
-          <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Hozzáadás</button>
+          <button mat-stroked-button color="primary" type="submit">Hozzáadás</button>
         </form>
       </div>
     </mat-card-content>
