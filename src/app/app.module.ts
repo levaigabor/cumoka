@@ -10,7 +10,6 @@ import { MomentModule } from 'ngx-moment';
 import { UserFormComponent } from './pages/user-form/user-form.component';
 import { MealsComponent } from './pages/meals/meals.component';
 import { TrainingPlansComponent } from './pages/training-plans/training-plans.component';
-import { RecipesComponent } from './pages/recipes/recipes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { ChartComponent } from './chart/chart.component';

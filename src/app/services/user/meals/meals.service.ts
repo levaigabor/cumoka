@@ -18,9 +18,9 @@ export class MealsService {
     return this._httpClient.get<any>(this._requestUrl + 'meals');
   }
 
-  public addNewMeal(requestBody) {
+  public addNewMeal(requestBody, username) {
     console.log(requestBody);
-    return this._httpClient.post<any>(this._requestUrl + 'logs/user1', requestBody);
+    return this._httpClient.post<any>(this._requestUrl + 'logs/' + username, requestBody);
   }
 
   public getMealsOfUser(id: number) {

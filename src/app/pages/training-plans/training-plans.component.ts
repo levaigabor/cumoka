@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { first, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-training-plans',
@@ -12,7 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TrainingPlansComponent implements OnInit {
 
-  private _subs;
+  public currentUserName = "";
   public allTrainingPlans = [];
   public allActivities = [];
   public submitted: boolean = true;
@@ -23,7 +24,8 @@ export class TrainingPlansComponent implements OnInit {
 
   constructor(private _traningPlansService: TrainingPlansService,
     private _httpClient: HttpClient, private _router: Router,
-    private _formBuilder: FormBuilder) { }
+    private _formBuilder: FormBuilder,
+    private _userService: UserService) { }
 
   onSubmit() {
     this.submitted = true;
@@ -36,11 +38,9 @@ export class TrainingPlansComponent implements OnInit {
 
   ngOnInit() {
     this.newPlanForm = this._formBuilder.group({
-      name: [''],
-      type: [''],
-      date: [''],
-      count: ['']
+      name: ['']
     });
+    this.getCurrentUserName();
     this.getAllTrainingPlans();
     this.getAllTrainingActivities();
   }
@@ -74,20 +74,16 @@ export class TrainingPlansComponent implements OnInit {
   }
 
   public onCreateNewPlan() {
+    let id = JSON.parse(localStorage.getItem('userId'));
     let requestBody = {
       "activities": [
-        {
-          "countable": true,
-          "id": this.getSelectedTrainingId(),
-          "name": this.form.type.value,
-          "quantity": this.form.count.value
-        }
+        { }
       ],
       "done": false,
       "id": Math.random,
       "name": this.form.name.value,
       "user": {
-        "id": 1
+        "id": id
       }
     }
     console.log(requestBody);
@@ -101,7 +97,7 @@ export class TrainingPlansComponent implements OnInit {
   }
 
   public onUpdateTrainingPlan() {
-    let id = "1";
+    let id = JSON.parse(localStorage.getItem('userId'));
     let requestBody = {
 
     };
@@ -126,13 +122,23 @@ export class TrainingPlansComponent implements OnInit {
   }
 
   public onGetTrainingPlanOfUser() {
-    let username = "user1";
-    this._traningPlansService.getTrainingPlanByUsername(username)
+    this._traningPlansService.getTrainingPlanByUsername(this.currentUserName)
       .pipe(first()).subscribe(
         plan => {
           console.log(plan);
         }
       );
+  }
 
+  public getCurrentUserName() {
+    let name;
+    let id = JSON.parse(localStorage.getItem('userId'));
+    this._userService.getUserById(id)
+      .subscribe(
+        username => {
+          this.currentUserName = username["username"];
+          console.log(this.currentUserName);
+        }
+      );
   }
 }

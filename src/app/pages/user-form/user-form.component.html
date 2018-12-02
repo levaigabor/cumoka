@@ -6,27 +6,19 @@
 <div class="container">
   <mat-card class="quote">
     <mat-card-content>
-      <p>{{quote.qoute}}</p>
+      <p class="pQuote">{{ quote.qoute }}</p>
     </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Adataid</mat-card-title>
+      <mat-card-title>{{ user.username }} adatai:</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" #userForm="ngForm" [hidden]="!editing">
         <div class="form-group">
           <mat-form-field appearance="outline">
-            <mat-label>Név</mat-label>
-            <input matInput type="text" [(ngModel)]="user.username" name="name" #name="ngModel" required>
-            <!--<mat-error *ngIf="email.invalid || name.pristine">Kitöltendő!</mat-error>-->
-          </mat-form-field>
-        </div>
-
-        <div class="form-group">
-          <mat-form-field appearance="outline">
             <mat-label>Súly</mat-label>
-            <input matInput type="text" [(ngModel)]="user.weight" name="name" #name="ngModel" required>
+            <input matInput type="text" [(ngModel)]="user.weight" name="weight" #weight="ngModel" required>
             <!-- <mat-error *ngIf="weight.invalid || name.pristine">Kitöltendő!</mat-error> -->
           </mat-form-field>
         </div>
@@ -44,15 +36,11 @@
       <div [hidden]="editing">
         <mat-list>
           <mat-list-item>
-            <h4 mat-line>Felhasználó név</h4>
-            <p mat-line> {{ user.username }} </p>
-          </mat-list-item>
-          <mat-list-item>
-            <h4 mat-line>Súlyod</h4>
+            <h3 mat-line>Súlyod: </h3>
             <p mat-line> {{ user.weight }} </p>
           </mat-list-item>
           <mat-list-item>
-            <h4 mat-line>Magasságod</h4>
+            <h3 mat-line>Magasságod: </h3>
             <p mat-line> {{ user.height }} </p>
           </mat-list-item>
         </mat-list>

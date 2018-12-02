@@ -21,7 +21,6 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit() {
     this.getUserData();
-    this.getBMI();
     this.getQuotes();
   }
 
@@ -30,10 +29,12 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     this.editing = false;
     this.setUserData();
+    this.getBMI();
   }
 
   public getBMI() {
-    this._userService.getBMIIndex(1)
+    let id = JSON.parse(localStorage.getItem('userId'));
+    this._userService.getBMIIndex(id)
       .pipe(first()).subscribe(
         index => {
           this.BMI = index;
@@ -52,19 +53,19 @@ export class UserFormComponent implements OnInit {
   }
 
   getUserData() {
-    const id = 1;
+    this.getBMI();
+
+    let id = JSON.parse(localStorage.getItem('userId'));
     this._userService.getUserById(id)
       .subscribe(user => {
         console.log(user);
         this.user = user
       }
-      );
+    );
   }
 
   setUserData(): void {
     this._userService.updateUser(this.user)
       .subscribe(() => console.log('setUserData finished!'));
-
-    this.getBMI();
   }
 }

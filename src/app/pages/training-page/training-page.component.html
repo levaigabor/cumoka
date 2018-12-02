@@ -1,8 +1,8 @@
 <mat-toolbar>
-    <div class="container">
-      <h1>{{ trainingPlan.name }}</h1>
-    </div>
-  </mat-toolbar>
+  <div class="container">
+    <h1>{{ trainingPlan.name }}</h1>
+  </div>
+</mat-toolbar>
 <div class="container">
   <mat-card class="newTrainingCard">
     <mat-card-header>
@@ -10,17 +10,19 @@
     </mat-card-header>
     <mat-card-content>
       <div class="trainingFormContainer">
-        <form (ngSubmit)="onSubmit()" #planForm="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="activityForm">
           <mat-form-field appearance="outline">
             <mat-label>Típus</mat-label>
-            <input matInput list="plans" id="name" required>
-            <datalist id="plans">
-              <option *ngFor="let activity of allActivities" value="{{activity.id}}">{{activity.name}}</option>
-            </datalist>
+            <input matInput aria-label="State" [matAutocomplete]="auto" formControlName="type" required>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let activity of allActivities" [value]="activity.name">
+                {{activity.name}}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Mennyiség (db/perc)</mat-label>
-            <input matInput type="number" id="count" name="count" required>
+            <input matInput type="number" id="count" name="count" formControlName="count" required>
           </mat-form-field>
           <button mat-stroked-button color="primary" type="submit" [disabled]="!planForm.form.valid">Hozzáadás</button>
         </form>
@@ -32,16 +34,16 @@
   <div class="trainingItemDetails">
     <table class="table table-hover">
       <thead>
-      <tr>
-        <th scope="col">Típusa</th>
-        <th scope="col">Mennyiség</th>
-      </tr>
+        <tr>
+          <th scope="col">Típusa</th>
+          <th scope="col">Mennyiség</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let training of trainingPlan.activities">
-        <td>{{ training.name }}</td>
-        <td>{{ training.quantity }}</td>
-      </tr>
+        <tr *ngFor="let training of trainingPlan.activities">
+          <td>{{ training.name }}</td>
+          <td>{{ training.quantity }}</td>
+        </tr>
       </tbody>
     </table>
   </div>

@@ -18,3 +18,7 @@ mat-card {
 form > div {
   margin-bottom: 30px
 }
+
+p.pQuote {
+  text-align: center
+}

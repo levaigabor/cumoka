@@ -22,23 +22,6 @@
                 <mat-label>Neve</mat-label>
                 <input matInput type="text" id="name" name="name" formControlName="name" required>
               </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Időpont</mat-label>
-                <input matInput type="date" id="time" name="time" formControlName="date" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Típus</mat-label>
-                <input matInput aria-label="State" [matAutocomplete]="auto" formControlName="type">
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let activity of allActivities" [value]="activity.name">
-                    {{activity.name}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Mennyiség (db/perc)</mat-label>
-                <input matInput type="number" id="count" name="count" formControlName="count" required>
-              </mat-form-field>
               <button mat-stroked-button color="primary" type="submit">Hozzáadás</button>
             </form>
           </div>

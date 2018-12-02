@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, AfterContentChecked, AfterContentInit } from '@angular/core';
 import { Meal } from '../../models/meal';
 import { ChartComponent } from 'src/app/chart/chart.component';
-import { MealsService } from 'src/app/services/meals.service';
+import { MealsService } from 'src/app/services/user/meals/meals.service';
 import { first } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-meals',
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MealsComponent implements OnInit, AfterContentInit {
   @ViewChild(ChartComponent) diagram: ChartComponent;
 
+  public currentUserName = "";
   public mealForm: FormGroup;
   public listMealsForm: FormGroup;
   public dailyMealsForDiagram: Meal[];
@@ -22,20 +24,21 @@ export class MealsComponent implements OnInit, AfterContentInit {
   newMealSubmitted = false;
   listSubmitted = false;
 
-  constructor(private _formBuilder: FormBuilder, private _mealsService: MealsService) {
+  constructor(private _formBuilder: FormBuilder, private _mealsService: MealsService, private _userService: UserService) {
     this.dailyMealsForDiagram = [];
     this.allAvailableMeals = [];
     this.allExistingMealsOfUser = [];
   }
 
   onSubmit() {
-    console.log(this.form.time.value)
+    this.newMealSubmitted = true;
+
+    //console.log(this.form.time.value)
     if (this.mealForm.invalid) {
       return;
     }
     this.createNewMeal();
     this.diagram.createChart();
-    this.newMealSubmitted = true;
   }
 
   onSubmitList() {
@@ -47,8 +50,9 @@ export class MealsComponent implements OnInit, AfterContentInit {
   }
 
   onDateListChange() {
+    this.listSubmitted = true;
     this.allExistingMealsOfUser = [];
-    const username = "user1";
+    let username = this.currentUserName;
     let date = this.listForm.time.value;
     console.log("Changed:" + date);
     this._mealsService.getMealsOfUserByDate(username, date)
@@ -65,7 +69,6 @@ export class MealsComponent implements OnInit, AfterContentInit {
       console.log(meal);
       let newMeal = new Meal(meal['name'], meal['calories'], date);
       this.allExistingMealsOfUser.push(newMeal);
-      this.allAvailableMeals
     });
   }
 
@@ -78,6 +81,7 @@ export class MealsComponent implements OnInit, AfterContentInit {
       time: ['', Validators.required]
     });
     this.getAvailableMeals();
+    this.getCurrentUserName();
     // this.loadExistingDataToDiagram();
     //this.pullAllExistingMealsOfUser();
   }
@@ -92,6 +96,18 @@ export class MealsComponent implements OnInit, AfterContentInit {
 
   get listForm() {
     return this.listMealsForm.controls;
+  }
+
+  public getCurrentUserName() {
+    let name;
+    let id = JSON.parse(localStorage.getItem('userId'));
+    this._userService.getUserById(id)
+      .subscribe(
+        username => {
+          this.currentUserName = username["username"];
+          console.log(this.currentUserName);
+        }
+      );
   }
 
   private loadExistingDataToDiagram() {
@@ -121,7 +137,7 @@ export class MealsComponent implements OnInit, AfterContentInit {
   }
 
   public pullAllExistingMealsOfUser() {
-    const id = 1;
+    let id = JSON.parse(localStorage.getItem('userId'));
     this._mealsService.getMealsOfUser(id)
       .pipe(first()).subscribe(
         meals => {
@@ -148,7 +164,7 @@ export class MealsComponent implements OnInit, AfterContentInit {
     };
     console.log(name + " - " + time);
 
-    this._mealsService.addNewMeal(requestData)
+    this._mealsService.addNewMeal(requestData, this.currentUserName)
       .pipe(first()).subscribe(
         resp => {
           console.log("POST response " + resp);

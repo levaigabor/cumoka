@@ -33,12 +33,11 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="chartCard">
+  <mat-card *ngIf="newMealSubmitted" class="chartCard">
     <mat-card-content>
       <chart-component [datapoints]="dailyMealsForDiagram"></chart-component>
     </mat-card-content>
   </mat-card>
-
 
     <mat-card class="mealSelect">
       <mat-card-header>

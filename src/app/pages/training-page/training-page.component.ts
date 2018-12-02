@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TrainingPlansService } from '../../services/user/training-plan/training-plans.service';
 import { first } from 'rxjs/operators';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-training-page',
@@ -13,28 +13,25 @@ export class TrainingPageComponent implements OnInit {
   @Input() allActivities = [];
   public training;
   public isTrainingsLoaded;
-
+  public activityForm: FormGroup;
 
   constructor(private _traningPlansService: TrainingPlansService, private _formBuilder: FormBuilder) {
     this.isTrainingsLoaded = false;
   }
 
   ngOnInit() {
+    this.activityForm = this._formBuilder.group({
+      type: [''],
+      count: ['']
+    });
+  }
 
-    /*
-    this._traningPlansService.getSpecificTraining(this.id)
-      .pipe(first()).subscribe(
-        training => {
-          this.training = training;
-          this.isTrainingsLoaded = true;
-          console.log(this.training["name"]);
-        });
-
-    */
+  get form() {
+    return this.activityForm.controls;
   }
 
   onSubmit() {
-
+    console.log(this.form.type.value);
   }
 
 }
